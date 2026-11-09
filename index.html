@@ -3,164 +3,468 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom - Premium Flower Shop</title>
     <script src="tel.js"></script>
-    <title>Navbar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f8f5f2;
+            --bg-warm: #f4f0eb;
+            --fg: #2d2a26;
+            --muted: #6b6a66;
+            --accent: #e85d4e;
+            --accent-soft: #f0c1a5;
+            --border: #d9d5d1;
+            --rose: #e8a5a5;
+            --leaf: #6b8a6b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--muted);
+        }
+
+        /* Navigation */
+        nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(248, 245, 242, 0.9);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-bg {
+            background: linear-gradient(135deg, var(--bg-warm) 0%, var(--bg) 100%);
+        }
+
+        .hero-accent {
+            color: var(--accent);
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+            margin: 24px 0;
+        }
+
+        /* Cards */
+        .flower-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .flower-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .flower-card img {
+            border-radius: 8px;
+            margin-bottom: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .flower-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #d54a3c;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-soft);
+            color: var(--fg);
+        }
+
+        /* Stats */
+        .stat-number {
+            font-size: 32px;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--accent), var(--fg));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--fg);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        footer a {
+            color: var(--accent-soft);
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+    </style>
 </head>
 <body>
 
-<nav class="flex items-center justify-between px-10 py-5 bg-white shadow-sm">
+    <!-- Navigation -->
+    <nav class="px-6 py-4 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="text-2xl font-serif font-bold tracking-tighter">BLOOM</div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#collection" class="nav-link text-gray-600 hover:text-[var(--accent)]">Collection</a>
+                <a href="#about" class="nav-link text-gray-600 hover:text-[var(--accent)]">About</a>
+                <a href="#gallery" class="nav-link text-gray-600 hover:text-[var(--accent)]">Gallery</a>
+            </div>
 
-    <!-- Left -->
-    <div class="text-3xl font-bold italic">
-        BLOOM
-    </div>
+            <div class="flex items-center space-x-3">
+                <button class="btn-secondary text-sm">Shop Now</button>
+                <button class="text-gray-400 hover:text-white">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21l-2-2-6-6l-9 9"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Search -->
-    <div class="w-96">
-        <input
-            type="text"
-            placeholder="What are you looking for?"
-            class="w-full bg-gray-100 rounded-full px-6 py-3 outline-none">
-    </div>
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen relative">
+        <div class="max-w-7xl mx-auto py-24 px-6 md:px-12">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <div>
+                    <p class="text-sm uppercase tracking-wider text-gray-400 mb-6">Premium Flower Shop</p>
+                    <h1 class="text-5xl md:text-7xl font-serif font-bold leading-tight mb-6">
+                        Curated Florals<br>
+                        that Speak to the Soul
+                    </h1>
+                    
+                    <p class="text-lg md:text-xl text-gray-500 mb-8 max-w-lg">
+                        Discover hand-selected blooms arranged with care, perfect for any occasion. From roses to tulips, we have the perfect bouquet waiting for you.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button class="btn-primary">Order Now</button>
+                        <button class="btn-secondary">View Collection</button>
+                    </div>
+                    
+                    <div class="mt-12 flex gap-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl font-serif text-[var(--accent)]">⭐</span>
+                            <span class="text-xl font-medium">4.9/5</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl font-serif text-[var(--accent)]">✨</span>
+                            <span class="text-xl font-medium">Free Delivery</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl font-serif text-[var(--accent)]">🔒</span>
+                            <span class="text-xl font-medium">Secure Pay</span>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Menu -->
-    <div class="flex items-center space-x-6 font-medium">
-
-        <a href="#" class="hover:text-pink-500">Shots</a>
-
-        <button
-            class="bg-black-300 text-white rounded-full w-10 h-10 flex items-center justify-center">
-            🔍
-        </button>
-
-        <a href="#" class="hover:text-pink-500">Home</a>
-        <a href="#" class="hover:text-pink-500">Bouquets</a>
-        <a href="#" class="hover:text-pink-500">Offers</a>
-        <a href="#" class="hover:text-pink-500">Contact</a>
-
-    </div>
-
-    <!-- Right -->
-    <div class="flex items-center space-x-4">
-
-        <button class="font-medium">
-            Sign Up
-        </button>
-
-        <button
-            class="bg-black text-white px-5 py-2 rounded-full">
-            Log In
-        </button>
-
-    </div>
-
-</nav>
-<section class="grid grid-cols-3 items-center bg-pink-100 px-12 py-16">
-
-    <!-- Left -->
-    <div>
-        <img src="fl.jpg" class="w-90">
-    </div>
-
-    <!-- Center -->
-    <div class="text-center">
-        <h1 class="text-6xl font-serif text-pink-600 leading-tight">
-            Curated Florals
-            <br>
-            that Speak
-            <br>
-            to the Soul
-        </h1>
-
-        <button class="mt-8 bg-pink-500 text-white px-6 py-3 rounded-full">
-            Order Now
-        </button>
-    </div>
-
-    <!-- Right -->
-    <div class="flex justify-end">
-        <img src="fl2.jpg" class="rounded-3xl w-72">
-    </div>
-
-</section>
-<section class="px-12 py-16">
-
-<h2 class="text-5xl font-serif text-pink-600 mb-10">
-Order with Confidence
-</h2>
-+
-<div class="grid md:grid-cols-4 gap-6">
-
-<div class="border rounded-2xl p-5">
-<img src="fl3.jpg">
-<h3>Blush Bloom</h3>
-</div>
-
-<div class="border rounded-2xl p-5">
-<img src="fl4.jpg" class="ml-auto">
-<h3>Pure Rose</h3>
-</div>
-
-</div>
-
-</section>
-<section class="px-12 py-16">
-
-<h2 class="text-5xl font-serif text-pink-600 mb-10">
-Order with Confidence
-</h2>
-
-<div class="grid md:grid-cols-4 gap-6">
-
-<div class="border rounded-2xl p-5">
-<img src="img.jpg">
-<h3>Blush Bloom</h3>
-</div>
-
-<div class="border rounded-2xl p-5">
-<img src="img2.jpg">
-<h3>Pure Rose</h3>
-</div>
-
-</div>
-
-</section>
-<section class="max-w-7xl mx-auto h-screen flex items-center justify-center">
-
-    <div class="flex w-full items-center gap-12">
-
-        <!-- Left Image -->
-        <div class="w-1/3">
-            <img src="fl8.jpg"
-                 alt="Flowers"
-                 class="w-full h-[650px] object-cover rounded-sm shadow-lg">
+                <div class="relative">
+                    <div class="absolute -top-6 -left-6 rounded-2xl bg-[var(--bg-warm)] p-6 shadow-2xl">
+                        <img src="fl.jpg" alt="Premium bouquet" class="w-64 h-auto rounded-xl">
+                    </div>
+                    
+                    <div class="absolute -bottom-6 -right-0">
+                        <img src="fl2.jpg" alt="Rose bouquet" class="w-48 h-auto rounded transform hover:scale-105 transition-transform">
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Right Content -->
-        <div class="w-1/2 bg-[#f5eeeb] p-16 shadow-lg relative">
+        <!-- Floating elements -->
+        <div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2">
+            <div class="w-20 h-20 rounded-full bg-[var(--accent-soft)] flex items-center justify-center">
+                <span class="text-2xl font-serif text-[var(--fg)]">🌸</span>
+            </div>
+        </div>
+        <div class="absolute bottom-1/4 right-1/4 -translate-x-1/2 -translate-y-1/2">
+            <div class="w-24 h-24 rounded-full bg-[var(--accent-soft)] flex items-center justify-center">
+                <span class="text-3xl font-serif text-[var(--fg)]">🌺</span>
+            </div>
+        </div>
+    </section>
 
-            <h1 class="text-5xl font-serif text-gray-800 mb-10">
-                Heaven's Treats - Flower Collection
-            </h1>
-
-            <p class="text-xl text-gray-700 leading-9 mb-12">
-                A perennial favourite to gift in bouquets and
-                arrangements, roses make an excellent addition
-                to floral gifts for friends. Different colours
-                have different meanings.
-            </p>
-
-            <button
-                class="bg-yellow-500 text-white px-8 py-3 hover:bg-yellow-600">
-                FOR PURCHASE
-            </button>
-
+    <!-- Collection Section -->
+    <section id="collection" class="px-6 py-20 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <p class="text-sm uppercase tracking-wider text-gray-400 mb-4">Our Collection</p>
+            <h2 class="text-4xl md:text-5xl font-serif font-bold">Beautiful Arrangements</h2>
+            <p class="text-gray-500 max-w-2xl mx-auto">Hand-tied bouquets and premium floral arrangements for every moment in life.</p>
         </div>
 
-    </div>
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="flower-card">
+                <img src="fl3.jpg" alt="Blush Bloom" class="h-48 object-cover mb-6">
+                <h3 class="text-xl font-serif font-bold mb-2">Blush Bloom</h3>
+                <p class="text-gray-500 text-sm mb-4">Soft pink roses wrapped in elegance</p>
+                <p class="text-[var(--muted)] text-sm">$45.00</p>
+                <button class="btn-primary w-full mt-3">Order</button>
+            </div>
 
-</section>
+            <!-- Card 2 -->
+            <div class="flower-card">
+                <img src="fl4.jpg" alt="Pure Rose" class="h-48 object-cover mb-6">
+                <h3 class="text-xl font-serif font-bold mb-2">Pure Rose</h3>
+                <p class="text-gray-500 text-sm mb-4">Classic red roses, timeless beauty</p>
+                <p class="text-[var(--muted)] text-sm">$52.00</p>
+                <button class="btn-primary w-full mt-3">Order</button>
+            </div>
 
+            <!-- Card 3 -->
+            <div class="flower-card">
+                <img src="img.jpg" alt="Mixed Bouquet" class="h-48 object-cover mb-6">
+                <h3 class="text-xl font-serif font-bold mb-2">Mixed Bouquet</h3>
+                <p class="text-gray-500 text-sm mb-4">Seasonal flowers in harmony</p>
+                <p class="text-[var(--muted)] text-sm">$68.00</p>
+                <button class="btn-primary w-full mt-3">Order</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-[var(--bg-warm)] px-6 py-20 max-w-7xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center">
+            <div>
+                <p class="stat-number">500+</p>
+                <p class="text-gray-500 text-sm mt-1">Bouquets Sold</p>
+            </div>
+            <div>
+                <p class="stat-number">98%</p>
+                <p class="text-gray-500 text-sm mt-1">Customer Satisfaction</p>
+            </div>
+            <div>
+                <p class="stat-number">12</p>
+                <p class="text-gray-500 text-sm mt-1">Years Experience</p>
+            </div>
+            <div>
+                <p class="stat-number">24/7</p>
+                <p class="text-gray-500 text-sm mt-1">Support</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="px-6 py-20 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <p class="text-sm uppercase tracking-wider text-gray-400 mb-4">Gallery</p>
+            <h2 class="text-4xl md:text-5xl font-serif font-bold">Stunning Arrangements</h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <img src="fl5.jpg" alt="Floral arrangement" class="rounded-xl transform hover:scale-105 transition-transform duration-300">
+            <img src="fl6.jpg" alt="Floral arrangement" class="rounded-xl transform hover:scale-105 transition-transform duration-300">
+            <img src="fl8.jpg" alt="Floral arrangement" class="rounded-xl transform hover:scale-105 transition-transform duration-300">
+            <img src="img2.jpg" alt="Floral arrangement" class="rounded-xl transform hover:scale-105 transition-transform duration-300">
+            <img src="fl3.jpg" alt="Floral arrangement" class="rounded-xl transform hover:scale-105 transition-transform duration-300">
+            <img src="fl4.jpg" alt="Floral arrangement" class="rounded-xl transform hover:scale-105 transition-transform duration-300">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="px-6 py-20 bg-[var(--bg-warm)] max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <p class="text-sm uppercase tracking-wider text-gray-400 mb-4">About Us</p>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6">Years of Floral Excellence</h2>
+                <p class="text-gray-500 text-lg mb-6">
+                    Since 2012, Bloom has been creating beautiful floral arrangements that capture moments and emotions. Each bouquet is hand-tied by our skilled artisans using the freshest seasonal flowers.
+                </p>
+                <ul class="space-y-3 text-gray-500">
+                    <li class="flex items-start">
+                        <span class="text-2xl font-serif text-[var(--accent)] flex-shrink-0 mt-1">✨</span>
+                        <div>Premium quality flowers sourced directly from growers</div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-2xl font-serif text-[var(--accent)] flex-shrink-0 mt-1">🌿</span>
+                        <div>Eco-friendly packaging and sustainable practices</div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-2xl font-serif text-[var(--accent)] flex-shrink-0 mt-1">🚚</span>
+                        <div>Free delivery on all orders over $50</div>
+                    </li>
+                </ul>
+                <button class="btn-secondary mt-6">Read Our Story</button>
+            </div>
+            <div class="relative">
+                <img src="fl8.jpg" alt="Floral studio" class="rounded-2xl shadow-2xl">
+                <div class="absolute -bottom-6 -right-0 bg-[var(--accent)] text-white px-6 py-4 rounded-2xl">
+                    <p class="font-serif text-lg">"Every flower tells a story. We're here to help you tell yours."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="relative overflow-hidden px-6 py-24 max-w-7xl mx-auto">
+        <div class="absolute inset-0">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-[var(--accent-soft)] opacity-20"></div>
+        </div>
+        <div class="relative text-center">
+            <p class="text-sm uppercase tracking-wider text-gray-400 mb-6">Get 15% Off Your First Order</p>
+            <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">Subscribe to Our Newsletter</h2>
+            <p class="text-gray-500 text-lg mb-8 max-w-2xl mx-auto">Join our community of flower lovers and get exclusive access to new arrivals, style tips, and special offers.</p>
+            
+            <form class="max-w-md mx-auto flex flex-col md:flex-row gap-4">
+                <input
+                    type="email"
+                    placeholder="Enter your email"
+                    class="flex-1 px-6 py-4 rounded-full border border-[var(--border)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                />
+                <button type="submit" class="btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="px-6 py-12">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12">
+            <div>
+                <p class="text-2xl font-serif font-bold mb-4">BLOOM</p>
+                <p class="text-gray-500 text-sm">Handcrafted floral arrangements for every occasion. Since 2012.</p>
+                <div class="mt-6 flex gap-4">
+                    <a href="#" class="text-gray-400 hover:text-[var(--accent)] transition-colors">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-[var(--accent)] transition-colors">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M16 17h2v4h-2"/>
+                            <line x1="21" y1="12" x2="9.01" y2="12"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-[var(--accent)] transition-colors">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-serif font-bold mb-4">Collection</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-500 hover:text-[var(--accent)] transition-colors">Roses</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-[var(--accent)] transition-colors">Tulips</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-[var(--accent)] transition-colors">Lilies</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-[var(--accent)] transition-colors">Mixed</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-serif font-bold mb-4">Company</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-500 hover:text-[var(--accent)] transition-colors">About Us</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-[var(--accent)] transition-colors">Careers</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-[var(--accent)] transition-colors">Blog</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-[var(--accent)] transition-colors">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-serif font-bold mb-4">Support</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-500 hover:text-[var(--accent)] transition-colors">FAQ</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-[var(--accent)] transition-colors">Shipping</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-[var(--accent)] transition-colors">Returns</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-[var(--accent)] transition-colors">Track Order</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pt-12 border-t border-[var(--border)] mt-12 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-500 text-sm">2024 Bloom Floral Company. All rights reserved.</p>
+            <div class="flex items-center gap-6">
+                <a href="#" class="text-gray-500 hover:text-[var(--accent)] transition-colors text-sm">Privacy Policy</a>
+                <a href="#" class="text-gray-500 hover:text-[var(--accent)] transition-colors text-sm">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
